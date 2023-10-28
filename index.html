@@ -1,0 +1,939 @@
+{% comment %} <!DOCTYPE html>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gluten:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <title>BRUTE FORCE</title>
+    <style>
+      body {
+        background-color: #000000;
+        color: #fff;
+        font-family: "Gluten", cursive;
+        margin: 0;
+        padding: 0;
+      }
+
+      h1 {
+        background-color: #000000;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        margin: 0;
+        font-size: 36px;
+      }
+
+      form {
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        max-width: 400px;
+        margin: 20px auto;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 255, 0.9);
+      }
+
+      label,
+      select {
+        display: block;
+        margin-bottom: 10px;
+        color: #fff;
+      }
+
+      select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #007bff;
+        border-radius: 10px;
+        font-size: 16px;
+        background-color: #000;
+        color: #fff;
+        transition: border-color 0.3s, box-shadow 0.9s;
+      }
+
+      select:focus {
+        border-color: #005c99;
+        box-shadow: 0 0 10px #005c99;
+      }
+
+      #pdf-links {
+        background-color: rgba(0, 0, 0, 0.7);
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 30, 255, 0.9);
+      }
+
+      #pdf-links select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #007bff;
+        border-radius: 10px;
+        font-size: 16px;
+        background-color: #000;
+        color: #fff;
+        transition: border-color 0.3s, box-shadow 0.9s;
+      }
+
+      #pdf-links select:focus {
+        border-color: #005c99;
+        box-shadow: 0 0 10px #005c99;
+      }
+    </style>
+    <script>
+      var selectedYear = null;
+      var selectedSubject = null;
+      var selectedUnit = null;
+      async function showSubjects() {
+        var branch = document.getElementById("branch").value;
+        var year = document.getElementById("year").value;
+        var subjectsDropdown = document.getElementById("subjects");
+
+        // Clear existing options
+        subjectsDropdown.options.length = 0;
+
+        if (year == "Year 1") {
+          // Subjects for the first year
+          var firstYearSubjects = [
+            "Physics",
+            "Chemistry",
+            "Maths 1",
+            "Maths 2",
+            "Soft Skills",
+            "Mechanical engineering",
+            "Basic Electrical engineering",
+            "Electronic engineering",
+            "Programming for Problem Solving",
+            "Environment",
+          ];
+          for (var i = 0; i < firstYearSubjects.length; i++) {
+            addOption(subjectsDropdown, firstYearSubjects[i]);
+          }
+        } else if (year == "Year 2" && branch == "CSE") {
+          // Subjects for the second year CSE
+          var cseSecondYearSubjects = [
+            "Computer Organization and Architecture",
+            "Data Structures using C",
+            "Discrete Structures of Theory and Logic",
+            "Technical Communication",
+            "Maths 4",
+          ];
+          for (var i = 0; i < cseSecondYearSubjects.length; i++) {
+            addOption(subjectsDropdown, cseSecondYearSubjects[i]);
+          }
+        } else if (year == "Year 2" && branch == "CSE(AIML)") {
+          // Subjects for the second year CSE(AIML)
+          var cseAimlSecondYearSubjects = [
+            "Computer Organization and Architecture",
+            "Data Structures using C",
+            "Discrete Structures of Theory and Logic",
+            "Technical Communication",
+            "Maths 4",
+          ];
+          for (var i = 0; i < cseAimlSecondYearSubjects.length; i++) {
+            addOption(subjectsDropdown, cseAimlSecondYearSubjects[i]);
+          }
+        } else if (year == "Year 2" && branch == "CSE(DS)") {
+          // Subjects for the second year CSE(DS)
+          var cseDsSecondYearSubjects = [
+            "Computer Organization and Architecture",
+            "Data Structures using C",
+            "Discrete Structures of Theory and Logic",
+            "Technical Communication",
+            "Maths 4",
+          ];
+          for (var i = 0; i < cseDsSecondYearSubjects.length; i++) {
+            addOption(subjectsDropdown, cseDsSecondYearSubjects[i]);
+          }
+        } else if (year == "Year 2" && branch == "AIML") {
+          // Subjects for the second year AIML
+          var aimlSecondYearSubjects = [
+            "Computer Organization and Architecture",
+            "Data Structures using C",
+            "Discrete Structures of Theory and Logic",
+            "Technical Communication",
+            "Maths 4",
+          ];
+          for (var i = 0; i < aimlSecondYearSubjects.length; i++) {
+            addOption(subjectsDropdown, aimlSecondYearSubjects[i]);
+          }
+        } else if (year == "Year 2" && branch == "ECE") {
+          // Subjects for the second year ECE
+          var eceSecondYearSubjects = [
+            "DSD",
+            "NAS",
+            "EDC",
+            "Python",
+            "Human Values",
+            "Maths 4",
+          ];
+          for (var i = 0; i < eceSecondYearSubjects.length; i++) {
+            addOption(subjectsDropdown, eceSecondYearSubjects[i]);
+          }
+        } else if (year == "Year 2" && branch == "IT") {
+          // Subjects for the second year IT
+          var itSecondYearSubjects = [
+            "COA",
+            "Maths 4",
+            "DSTL",
+            "HV",
+            "DS",
+            "Python",
+          ];
+          for (var i = 0; i < itSecondYearSubjects.length; i++) {
+            addOption(subjectsDropdown, itSecondYearSubjects[i]);
+          }
+        } else if (year == "Year 2" && branch == "CIVIL") {
+          // Subjects for the second year Civil Engineering
+          var civilSecondYearSubjects = [
+            "Maths 3",
+            "Engineering Mechanics",
+            "Surveying",
+            "Fluid Mechanics",
+            "Python",
+            "Universal Human Values",
+          ];
+          for (var i = 0; i < civilSecondYearSubjects.length; i++) {
+            addOption(subjectsDropdown, civilSecondYearSubjects[i]);
+          }
+        } else if (year == "Year 3") {
+          // Subjects for the third year (Update with subjects for Year 3 for respective branches)
+          if (branch == "CSE") {
+            var cseThirdYearSubjects = [
+              "Compiler Design",
+              "Human Computer Interface",
+              "Web Designing",
+              "Design and Analysis of Algorithm",
+              "DBMS",
+              "Non-credit: Constitution of India",
+            ];
+            for (var i = 0; i < cseThirdYearSubjects.length; i++) {
+              addOption(subjectsDropdown, cseThirdYearSubjects[i]);
+            }
+          }
+          if (branch == "CSE(AIML)") {
+            var cseAimlThirdYearSubjects = [
+              "Compiler Design",
+              "Artificial Intelligence",
+              "Web Designing",
+              "Design and Analysis of Algorithm",
+              "DBMS",
+              "Non-credit: Constitution of India",
+            ];
+            for (var i = 0; i < cseAimlThirdYearSubjects.length; i++) {
+              addOption(subjectsDropdown, cseAimlThirdYearSubjects[i]);
+            }
+          } else if (branch == "ECE") {
+            var eceThirdYearSubjects = [
+              "ECE Subject 1",
+              "ECE Subject 2",
+              "ECE Subject 3",
+            ];
+            for (var i = 0; i < eceThirdYearSubjects.length; i++) {
+              addOption(subjectsDropdown, eceThirdYearSubjects[i]);
+            }
+            // Add subjects for other branches if needed
+          }
+        } else if (year == "Year 4") {
+          // Subjects for the fourth year (Update with subjects for Year 4 for respective branches)
+          if (branch == "CSE") {
+            var cseFourthYearSubjects = [
+              "CSE Advanced Subject 1",
+              "CSE Advanced Subject 2",
+            ];
+            for (var i = 0; i < cseFourthYearSubjects.length; i++) {
+              addOption(subjectsDropdown, cseFourthYearSubjects[i]);
+            }
+          } else if (branch == "ECE") {
+            var eceFourthYearSubjects = [
+              "ECE Advanced Subject 1",
+              "ECE Advanced Subject 2",
+            ];
+            for (var i = 0; i < eceFourthYearSubjects.length; i++) {
+              addOption(subjectsDropdown, eceFourthYearSubjects[i]);
+            }
+            // Add subjects for other branches if needed
+          }
+        }
+        selectedSubject = document.getElementById("subjects").value;
+      }
+
+      async function addOption(selectElement, text) {
+        var option = document.createElement("option");
+        option.text = text;
+        selectElement.add(option);
+      }
+
+      async function showYear() {
+        var selectedYear = document.getElementById("year").value;
+        var subjectDropdown = document.getElementById("subjects");
+        var unitDropdown = document.getElementById("units");
+        var pdfLinks = document.getElementById("pdf-links");
+
+        // Reset and hide subject, unit, and pdf links dropdowns
+        subjectDropdown.selectedIndex = 0;
+        unitDropdown.selectedIndex = 0;
+        pdfLinks.style.display = "none";
+
+        if (selectedYear) {
+          // Show the subject dropdown
+          subjectDropdown.style.display = "block";
+        }
+        selectedYear = document.getElementById("year").value;
+      }
+
+      async function showUnits() {
+        var selectedSubject = document.getElementById("subjects").value;
+        var unitDropdown = document.getElementById("units");
+        var pdfLinks = document.getElementById("pdf-links");
+
+        // Reset and hide unit and pdf links dropdowns
+        unitDropdown.selectedIndex = 0;
+        pdfLinks.style.display = "none";
+
+        if (selectedSubject) {
+          // Show the unit dropdown
+          unitDropdown.style.display = "block";
+        }
+        selectedUnit = document.getElementById("units").value;
+      }
+
+      async function showPdfLinks() {
+        var selectedUnit = document.getElementById("units").value;
+        var pdfLinks = document.getElementById("pdf-links");
+
+        // Reset and hide pdf links dropdown
+        pdfLinks.style.display = "none";
+
+        if (selectedUnit) {
+          // Show the pdf links dropdown
+          pdfLinks.style.display = "block";
+        }
+      }
+      async function showPdfLinks() {
+        var selectedPdf = document.getElementById("pdf-dropdown").value;
+        var pdfLinks = document.getElementById("pdf-links");
+
+        // Add logic to handle different PDFs for each unit of the selected subject
+        var selectedUnit = document.getElementById("units").value;
+        var selectedSubject = document.getElementById("subjects").value;
+        var selectedBranch = document.getElementById("branch").value;
+        var selectedYear = document.getElementById("year").value;
+
+        // Define an object to store PDF links for each unit, subject, branch, and year
+        var pdfs = {
+          // Add PDF links for Year 1, Unit 1 of all branches and subjects
+          "Year 1_Unit 1": {
+            CSE: {
+              Physics: [
+                "https://drive.google.com/file/d/1fYFkmJDMiG1IswO25zG9FPtBlieWVPql/view?usp=sharing"
+              ,
+              ],
+
+              Chemistry: ["pdf_link_2",],
+              "Basic Electrical engineering": [
+                "https://drive.google.com/file/d/1a1CmUvnTR-qQTpXUTPgxlkjC0brsDoIi/view?usp=sharing",
+                "https://drive.google.com/file/d/1P8ZNsSh0PTabxhPx3Ziv5SszPRpZ3eO6/view?usp=drive_link",
+                "https://drive.google.com/file/d/1evYgxW7SRUYfa0qnrgTPF-PeUKMl7Iw-/view?usp=sharing",
+                "https://drive.google.com/file/d/1nJi1gBsSy3GM4kBaW02env25VxMri5Qi/view?usp=sharing",
+                "https://drive.google.com/file/d/1hla1tcr3xGxwEKheiX1ZK14lXD8Zrwu9/view?usp=sharing"
+              ],
+              "environement":["https://drive.google.com/file/d/1r03nNv-0nXBr2R39TplApY-MaMs48S8E/view?usp=sharing",
+              "https://drive.google.com/file/d/122LaYzUdS8XkyzIAUM45elHfreKd74e9/view?usp=sharing",
+              "https://drive.google.com/file/d/1Tu4vvBDSdB-fsbNnOrYIxSpAj58OpR0V/view?usp=sharing",
+              "https://drive.google.com/file/d/1yQYRQ6TnP7Bl3YWxS7dJ-lX3nhLKIhkP/view?usp=sharing"],
+              "Programming for Problem Solving":["",],
+              // Add PDF links for other subjects in CSE
+            },
+            ECE: {
+              DSD: "pdf_link_3",
+              NAS: "pdf_link_4",
+              // Add PDF links for other subjects in ECE
+            },
+            // Add PDF links for other branches in Year 1_Unit 1
+          },
+          // Add PDF links for Year 1, Unit 2 of all branches and subjects
+          "Year 1_Unit 2": {
+            CSE: {
+              Physics: "pdf_link_5",
+              Chemistry: "pdf_link_6",
+              // Add PDF links for other subjects in CSE
+            },
+            ECE: {
+              DSD: "pdf_link_7",
+              NAS: "pdf_link_8",
+              // Add PDF links for other subjects in ECE
+            },
+            // Add PDF links for other branches in Year 1_Unit 2
+          },
+          // Repeat this pattern for all other years, units, subjects, and branches
+        };
+
+        // Get the PDF link for the selected combination of year, unit, subject, and branch
+        var selectedPdfLinks =
+          pdfs[selectedYear + "_" + selectedUnit][selectedBranch][
+            selectedSubject
+          ];
+
+        if (selectedPdfLinks) {
+          // Display the selected PDF links
+          pdfLinks.innerHTML = "PDF Links:<br>";
+          for (var i = 0; i < selectedPdfLinks.length; i++) {
+            pdfLinks.innerHTML +=
+              '<a href="' +
+              selectedPdfLinks[i] +
+              '" target="_blank">PDF ' +
+              (i + 1) +
+              "</a><br>";
+          }
+          pdfLinks.style.display = "block";
+        } else {
+          pdfLinks.style.display = "none";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>BRUTE FORCE</h1>
+    <form>
+      <label for="year">Select Year:</label>
+      <select id="year" name="year" onchange="showYear()">
+        <option value="" disabled selected>Select a Year</option>
+        <option value="Year 1">Year 1</option>
+        <option value="Year 2">Year 2</option>
+        <option value="Year 3">Year 3</option>
+        <option value="Year 4">Year 4</option>
+      </select>
+
+      <label for="branch">Branch:</label>
+      <select id="branch" name="branch" onchange="showSubjects()">
+        <option value="CSE">CSE</option>
+        <option value="CSE(AIML)">CSE(AIML)</option>
+        <option value="CSE(DS)">CSE(DS)</option>
+        <option value="AIML">AIML</option>
+        <option value="ECE">ECE</option>
+        <option value="MECH">MECH</option>
+        <option value="CIVIL">CIVIL</option>
+        <option value="IT">IT</option>
+        <option value="CS-IT">CS-IT</option>
+        <option value="EN">EN</option>
+        <option value="CS">CS</option>
+      </select>
+
+      <label for="subjects">Subjects:</label>
+      <select
+        id="subjects"
+        name="subjects"
+        style="display: none"
+        onchange="showUnits()"
+      ></select>
+
+      <label for="units">Units:</label>
+      <select
+        id="units"
+        name="units"
+        style="display: none"
+        onchange="showPdfLinks()"
+      >
+        <option value="" disabled selected>Select a Unit</option>
+        <option value="Unit 1">Unit 1</option>
+        <option value="Unit 2">Unit 2</option>
+        <option value="Unit 3">Unit 3</option>
+        <option value="Unit 4">Unit 4</option>
+        <option value="Unit 5">Unit 5</option>
+      </select>
+
+      <div id="pdf-links" style="display: none">
+        <label for="pdf-dropdown">Select a PDF:</label>
+        <select id="pdf-dropdown" name="pdf">
+          <option value="" disabled selected>Select a PDF</option>
+          <option value="pdf1.pdf">pdf1</option>
+          <option value="pdf2.pdf">pdf2</option>
+          <option value="pdf3.pdf">pdf3</option>
+        </select>
+      </div>
+      <div id="pdf-links" style="display: none">
+        <label for="pdf-dropdown">PDF Link:</label>
+        <div id="pdf-link"></div>
+      </div>
+    </form>
+  </body>
+</html>
+ {% endcomment %}
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@300&display=swap" rel="stylesheet">
+    <title>BRUTE FORCE</title>
+    <!-- Add Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Your custom styles here */
+        body {
+          background-color: #000000;
+          color: #fff;
+          font-family: "Gluten", cursive;
+          margin: 0;
+          padding: 0;
+        }
+  
+        h1 {
+          background-color: #000000;
+          color: #fff;
+          padding: 20px;
+          text-align: center;
+          margin: 0;
+          font-size: 36px;
+        }
+  
+        form {
+          background-color: rgba(0, 0, 0, 0.7);
+          padding: 20px;
+          max-width: 400px;
+          margin: 20px auto;
+          border-radius: 10px;
+          box-shadow: 0 0 20px rgba(0, 0, 255, 0.9);
+        }
+  
+        label,
+        select {
+          display: block;
+          margin-bottom: 10px;
+          color: #fff;
+        }
+  
+        select {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #007bff;
+          border-radius: 10px;
+          font-size: 16px;
+          background-color: #000;
+          color: #fff;
+          transition: border-color 0.3s, box-shadow 0.9s;
+        }
+  
+        select:focus {
+          border-color: #005c99;
+          box-shadow: 0 0 10px #005c99;
+        }
+  
+        #pdf-links {
+          background-color: rgba(0, 0, 0, 0.7);
+          max-width: 400px;
+          margin: 20px auto;
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0 0 20px rgba(0, 30, 255, 0.9);
+        }
+  
+        #pdf-links select {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #007bff;
+          border-radius: 10px;
+          font-size: 16px;
+          background-color: #000;
+          color: #fff;
+          transition: border-color 0.3s, box-shadow 0.9s;
+        }
+  
+        #pdf-links select:focus {
+          border-color: #005c99;
+          box-shadow: 0 0 10px #005c99;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="bg-dark text-white p-4 text-center" style="font-size: 36px;">BRUTE FORCE</h1>
+    <form class="bg-dark p-4 max-width: 400px; margin: 20px auto; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 0, 255, 0.9);">
+        <div class="form-group">
+            <label for="year" class="text-white">Select Year:</label>
+            <select id="year" name="year" class="form-control" onchange="showYear()">
+                <option value="" disabled selected>Select a Year</option>
+                <option value="Year 1">Year 1</option>
+                <option value="Year 2">Year 2</option>
+                <option value="Year 3">Year 3</option>
+                <option value="Year 4">Year 4</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="branch" class="text-white">Branch:</label>
+            <select id="branch" name="branch" class="form-control" onchange="showSubjects()">
+                <option value="CSE">CSE</option>
+                <option value="CSE(AIML)">CSE(AIML)</option>
+                <option value="CSE(DS)">CSE(DS)</option>
+                <option value="AIML">AIML</option>
+                <option value="ECE">ECE</option>
+                <option value="MECH">MECH</option>
+                <option value="CIVIL">CIVIL</option>
+                <option value="IT">IT</option>
+                <option value="CS-IT">CS-IT</option>
+                <option value="EN">EN</option>
+                <option value="CS">CS</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="subjects" class="text-white">Subjects:</label>
+            <select id="subjects" name="subjects" class="form-control" style="display: none;" onchange="showUnits()"></select>
+        </div>
+        <div class="form-group">
+            <label for "units" class="text-white">Units:</label>
+            <select id="units" name="units" class="form-control" style="display: none;" onchange="showPdfLinks()">
+                <option value="" disabled selected>Select a Unit</option>
+                <option value="Unit 1">Unit 1</option>
+                <option value="Unit 2">Unit 2</option>
+                <option value="Unit 3">Unit 3</option>
+                <option value="Unit 4">Unit 4</option>
+                <option value="Unit 5">Unit 5</option>
+            </select>
+        </div>
+        <div id="pdf-links" class="bg-dark p-4 max-width: 400px; margin: 20px auto; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 30, 255, 0.9);" style="display: none;">
+            <label for="pdf-dropdown" class="text-white">Select a PDF:</label>
+            <select id="pdf-dropdown" name="pdf" class="form-control">
+                <option value="" disabled selected>Select a PDF</option>
+                <option value="pdf1.pdf">pdf1</option>
+                <option value="pdf2.pdf">pdf2</option>
+                <option value="pdf3.pdf">pdf3</option>
+            </select>
+        </div>
+        <div id="pdf-links" class="bg-dark p-4 max-width: 400px; margin: 20px auto; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 30, 255, 0.9);" style="display: none;">
+            <label for="pdf-dropdown" class="text-white">PDF Link:</label>
+            <div id="pdf-link"></div>
+        </div>
+    </form>
+    <!-- Add Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Your JavaScript code here
+    </script>
+    var selectedYear = null;
+    var selectedSubject = null;
+    var selectedUnit = null;
+    async function showSubjects() {
+      var branch = document.getElementById("branch").value;
+      var year = document.getElementById("year").value;
+      var subjectsDropdown = document.getElementById("subjects");
+
+      // Clear existing options
+      subjectsDropdown.options.length = 0;
+
+      if (year == "Year 1") {
+        // Subjects for the first year
+        var firstYearSubjects = [
+          "Physics",
+          "Chemistry",
+          "Maths 1",
+          "Maths 2",
+          "Soft Skills",
+          "Mechanical engineering",
+          "Basic Electrical engineering",
+          "Electronic engineering",
+          "Programming for Problem Solving",
+          "Environment",
+        ];
+        for (var i = 0; i < firstYearSubjects.length; i++) {
+          addOption(subjectsDropdown, firstYearSubjects[i]);
+        }
+      } else if (year == "Year 2" && branch == "CSE") {
+        // Subjects for the second year CSE
+        var cseSecondYearSubjects = [
+          "Computer Organization and Architecture",
+          "Data Structures using C",
+          "Discrete Structures of Theory and Logic",
+          "Technical Communication",
+          "Maths 4",
+        ];
+        for (var i = 0; i < cseSecondYearSubjects.length; i++) {
+          addOption(subjectsDropdown, cseSecondYearSubjects[i]);
+        }
+      } else if (year == "Year 2" && branch == "CSE(AIML)") {
+        // Subjects for the second year CSE(AIML)
+        var cseAimlSecondYearSubjects = [
+          "Computer Organization and Architecture",
+          "Data Structures using C",
+          "Discrete Structures of Theory and Logic",
+          "Technical Communication",
+          "Maths 4",
+        ];
+        for (var i = 0; i < cseAimlSecondYearSubjects.length; i++) {
+          addOption(subjectsDropdown, cseAimlSecondYearSubjects[i]);
+        }
+      } else if (year == "Year 2" && branch == "CSE(DS)") {
+        // Subjects for the second year CSE(DS)
+        var cseDsSecondYearSubjects = [
+          "Computer Organization and Architecture",
+          "Data Structures using C",
+          "Discrete Structures of Theory and Logic",
+          "Technical Communication",
+          "Maths 4",
+        ];
+        for (var i = 0; i < cseDsSecondYearSubjects.length; i++) {
+          addOption(subjectsDropdown, cseDsSecondYearSubjects[i]);
+        }
+      } else if (year == "Year 2" && branch == "AIML") {
+        // Subjects for the second year AIML
+        var aimlSecondYearSubjects = [
+          "Computer Organization and Architecture",
+          "Data Structures using C",
+          "Discrete Structures of Theory and Logic",
+          "Technical Communication",
+          "Maths 4",
+        ];
+        for (var i = 0; i < aimlSecondYearSubjects.length; i++) {
+          addOption(subjectsDropdown, aimlSecondYearSubjects[i]);
+        }
+      } else if (year == "Year 2" && branch == "ECE") {
+        // Subjects for the second year ECE
+        var eceSecondYearSubjects = [
+          "DSD",
+          "NAS",
+          "EDC",
+          "Python",
+          "Human Values",
+          "Maths 4",
+        ];
+        for (var i = 0; i < eceSecondYearSubjects.length; i++) {
+          addOption(subjectsDropdown, eceSecondYearSubjects[i]);
+        }
+      } else if (year == "Year 2" && branch == "IT") {
+        // Subjects for the second year IT
+        var itSecondYearSubjects = [
+          "COA",
+          "Maths 4",
+          "DSTL",
+          "HV",
+          "DS",
+          "Python",
+        ];
+        for (var i = 0; i < itSecondYearSubjects.length; i++) {
+          addOption(subjectsDropdown, itSecondYearSubjects[i]);
+        }
+      } else if (year == "Year 2" && branch == "CIVIL") {
+        // Subjects for the second year Civil Engineering
+        var civilSecondYearSubjects = [
+          "Maths 3",
+          "Engineering Mechanics",
+          "Surveying",
+          "Fluid Mechanics",
+          "Python",
+          "Universal Human Values",
+        ];
+        for (var i = 0; i < civilSecondYearSubjects.length; i++) {
+          addOption(subjectsDropdown, civilSecondYearSubjects[i]);
+        }
+      } else if (year == "Year 3") {
+        // Subjects for the third year (Update with subjects for Year 3 for respective branches)
+        if (branch == "CSE") {
+          var cseThirdYearSubjects = [
+            "Compiler Design",
+            "Human Computer Interface",
+            "Web Designing",
+            "Design and Analysis of Algorithm",
+            "DBMS",
+            "Non-credit: Constitution of India",
+          ];
+          for (var i = 0; i < cseThirdYearSubjects.length; i++) {
+            addOption(subjectsDropdown, cseThirdYearSubjects[i]);
+          }
+        }
+        if (branch == "CSE(AIML)") {
+          var cseAimlThirdYearSubjects = [
+            "Compiler Design",
+            "Artificial Intelligence",
+            "Web Designing",
+            "Design and Analysis of Algorithm",
+            "DBMS",
+            "Non-credit: Constitution of India",
+          ];
+          for (var i = 0; i < cseAimlThirdYearSubjects.length; i++) {
+            addOption(subjectsDropdown, cseAimlThirdYearSubjects[i]);
+          }
+        } else if (branch == "ECE") {
+          var eceThirdYearSubjects = [
+            "ECE Subject 1",
+            "ECE Subject 2",
+            "ECE Subject 3",
+          ];
+          for (var i = 0; i < eceThirdYearSubjects.length; i++) {
+            addOption(subjectsDropdown, eceThirdYearSubjects[i]);
+          }
+          // Add subjects for other branches if needed
+        }
+      } else if (year == "Year 4") {
+        // Subjects for the fourth year (Update with subjects for Year 4 for respective branches)
+        if (branch == "CSE") {
+          var cseFourthYearSubjects = [
+            "CSE Advanced Subject 1",
+            "CSE Advanced Subject 2",
+          ];
+          for (var i = 0; i < cseFourthYearSubjects.length; i++) {
+            addOption(subjectsDropdown, cseFourthYearSubjects[i]);
+          }
+        } else if (branch == "ECE") {
+          var eceFourthYearSubjects = [
+            "ECE Advanced Subject 1",
+            "ECE Advanced Subject 2",
+          ];
+          for (var i = 0; i < eceFourthYearSubjects.length; i++) {
+            addOption(subjectsDropdown, eceFourthYearSubjects[i]);
+          }
+          // Add subjects for other branches if needed
+        }
+      }
+      selectedSubject = document.getElementById("subjects").value;
+    }
+
+    async function addOption(selectElement, text) {
+      var option = document.createElement("option");
+      option.text = text;
+      selectElement.add(option);
+    }
+
+    async function showYear() {
+      var selectedYear = document.getElementById("year").value;
+      var subjectDropdown = document.getElementById("subjects");
+      var unitDropdown = document.getElementById("units");
+      var pdfLinks = document.getElementById("pdf-links");
+
+      // Reset and hide subject, unit, and pdf links dropdowns
+      subjectDropdown.selectedIndex = 0;
+      unitDropdown.selectedIndex = 0;
+      pdfLinks.style.display = "none";
+
+      if (selectedYear) {
+        // Show the subject dropdown
+        subjectDropdown.style.display = "block";
+      }
+      selectedYear = document.getElementById("year").value;
+    }
+
+    async function showUnits() {
+      var selectedSubject = document.getElementById("subjects").value;
+      var unitDropdown = document.getElementById("units");
+      var pdfLinks = document.getElementById("pdf-links");
+
+      // Reset and hide unit and pdf links dropdowns
+      unitDropdown.selectedIndex = 0;
+      pdfLinks.style.display = "none";
+
+      if (selectedSubject) {
+        // Show the unit dropdown
+        unitDropdown.style.display = "block";
+      }
+      selectedUnit = document.getElementById("units").value;
+    }
+
+    async function showPdfLinks() {
+      var selectedUnit = document.getElementById("units").value;
+      var pdfLinks = document.getElementById("pdf-links");
+
+      // Reset and hide pdf links dropdown
+      pdfLinks.style.display = "none";
+
+      if (selectedUnit) {
+        // Show the pdf links dropdown
+        pdfLinks.style.display = "block";
+      }
+    }
+    async function showPdfLinks() {
+      var selectedPdf = document.getElementById("pdf-dropdown").value;
+      var pdfLinks = document.getElementById("pdf-links");
+
+      // Add logic to handle different PDFs for each unit of the selected subject
+      var selectedUnit = document.getElementById("units").value;
+      var selectedSubject = document.getElementById("subjects").value;
+      var selectedBranch = document.getElementById("branch").value;
+      var selectedYear = document.getElementById("year").value;
+
+      // Define an object to store PDF links for each unit, subject, branch, and year
+      var pdfs = {
+        // Add PDF links for Year 1, Unit 1 of all branches and subjects
+        "Year 1_Unit 1": {
+          CSE: {
+            Physics: [
+              "https://drive.google.com/file/d/1fYFkmJDMiG1IswO25zG9FPtBlieWVPql/view?usp=sharing"
+            ,
+            ],
+
+            Chemistry: ["pdf_link_2",],
+            "Basic Electrical engineering": [
+              "https://drive.google.com/file/d/1a1CmUvnTR-qQTpXUTPgxlkjC0brsDoIi/view?usp=sharing",
+              "https://drive.google.com/file/d/1P8ZNsSh0PTabxhPx3Ziv5SszPRpZ3eO6/view?usp=drive_link",
+              "https://drive.google.com/file/d/1evYgxW7SRUYfa0qnrgTPF-PeUKMl7Iw-/view?usp=sharing",
+              "https://drive.google.com/file/d/1nJi1gBsSy3GM4kBaW02env25VxMri5Qi/view?usp=sharing",
+              "https://drive.google.com/file/d/1hla1tcr3xGxwEKheiX1ZK14lXD8Zrwu9/view?usp=sharing"
+            ],
+            "environement":["https://drive.google.com/file/d/1r03nNv-0nXBr2R39TplApY-MaMs48S8E/view?usp=sharing",
+            "https://drive.google.com/file/d/122LaYzUdS8XkyzIAUM45elHfreKd74e9/view?usp=sharing",
+            "https://drive.google.com/file/d/1Tu4vvBDSdB-fsbNnOrYIxSpAj58OpR0V/view?usp=sharing",
+            "https://drive.google.com/file/d/1yQYRQ6TnP7Bl3YWxS7dJ-lX3nhLKIhkP/view?usp=sharing"],
+            "Programming for Problem Solving":["",],
+            // Add PDF links for other subjects in CSE
+          },
+          ECE: {
+            DSD: "pdf_link_3",
+            NAS: "pdf_link_4",
+            // Add PDF links for other subjects in ECE
+          },
+          // Add PDF links for other branches in Year 1_Unit 1
+        },
+        // Add PDF links for Year 1, Unit 2 of all branches and subjects
+        "Year 1_Unit 2": {
+          CSE: {
+            Physics: "pdf_link_5",
+            Chemistry: "pdf_link_6",
+            // Add PDF links for other subjects in CSE
+          },
+          ECE: {
+            DSD: "pdf_link_7",
+            NAS: "pdf_link_8",
+            // Add PDF links for other subjects in ECE
+          },
+          // Add PDF links for other branches in Year 1_Unit 2
+        },
+        // Repeat this pattern for all other years, units, subjects, and branches
+      };
+
+      // Get the PDF link for the selected combination of year, unit, subject, and branch
+      var selectedPdfLinks =
+        pdfs[selectedYear + "_" + selectedUnit][selectedBranch][
+          selectedSubject
+        ];
+
+      if (selectedPdfLinks) {
+        // Display the selected PDF links
+        pdfLinks.innerHTML = "PDF Links:<br>";
+        for (var i = 0; i < selectedPdfLinks.length; i++) {
+          pdfLinks.innerHTML +=
+            '<a href="' +
+            selectedPdfLinks[i] +
+            '" target="_blank">PDF ' +
+            (i + 1) +
+            "</a><br>";
+        }
+        pdfLinks.style.display = "block";
+      } else {
+        pdfLinks.style.display = "none";
+      }
+    }
+</body>
+</html>
